@@ -1,0 +1,37 @@
+<h1>Listing overworks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Subject</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Comment</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @overworks.each do |overwork| %>
+      <tr>
+        <td><%= overwork.user_id %></td>
+        <td><%= overwork.work_date %></td>
+        <td><%= overwork.subject %></td>
+        <td><%= overwork.work_start_time %></td>
+        <td><%= overwork.work_finish_time %></td>
+        <td><%= overwork.comment %></td>
+        <td><%= link_to 'Show', overwork %></td>
+        <td><%= link_to 'Edit', edit_overwork_path(overwork) %></td>
+        <td><%= link_to 'Destroy', overwork, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Overwork', new_overwork_path %>

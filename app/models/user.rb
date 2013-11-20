@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :buka_links, class_name: 'Boss', foreign_key: :boss_id
   has_many :bukas, through: :buka_links, source: :user
+
+  has_many :overworks
 end

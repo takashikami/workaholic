@@ -1,0 +1,41 @@
+<%= form_for(@overwork) do |f| %>
+  <% if @overwork.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@overwork.errors.count, "error") %> prohibited this overwork from being saved:</h2>
+
+      <ul>
+      <% @overwork.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :work_date %><br>
+    <%= f.date_select :work_date %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :work_start_time %><br>
+    <%= f.time_select :work_start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :work_finish_time %><br>
+    <%= f.time_select :work_finish_time %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_field :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

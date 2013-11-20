@@ -10,15 +10,14 @@
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
-    <a class="navbar-brand" href="/">Catapillar</a>
+    <a class="navbar-brand" href="/">Workaholic</a>
   </div>
 
   <ul class="nav navbar-nav">
-    <li><a href="/overworks">Favorites</a></li>
+    <li><a href="/overworks">List</a></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <% if user_signed_in? %>
-        <% p current_user.class %>
         <li><%= link_to current_user.email, edit_user_registration_path %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% else %>

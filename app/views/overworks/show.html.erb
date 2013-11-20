@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @overwork.user_id %>
+</p>
+
+<p>
+  <strong>Work date:</strong>
+  <%= @overwork.work_date %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @overwork.subject %>
+</p>
+
+<p>
+  <strong>Work start time:</strong>
+  <%= @overwork.work_start_time %>
+</p>
+
+<p>
+  <strong>Work finish time:</strong>
+  <%= @overwork.work_finish_time %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @overwork.comment %>
+</p>
+
+<%= link_to 'Edit', edit_overwork_path(@overwork) %> |
+<%= link_to 'Back', overworks_path %>

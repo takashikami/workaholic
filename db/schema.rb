@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119100834) do
+ActiveRecord::Schema.define(version: 20131120085954) do
 
   create_table "bosses", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20131119100834) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "overworks", force: true do |t|
+    t.integer  "user_id",          default: 0,                     null: false
+    t.date     "work_date",                                        null: false
+    t.string   "subject",          default: "",                    null: false
+    t.time     "work_start_time",  default: '2000-01-01 00:00:00', null: false
+    t.time     "work_finish_time", default: '2000-01-01 00:00:00', null: false
+    t.string   "comment",          default: "",                    null: false
+    t.integer  "status",           default: 0,                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "overworks", ["user_id", "work_date"], name: "index_overworks_on_user_id_and_work_date", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
