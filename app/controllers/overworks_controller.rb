@@ -16,8 +16,12 @@ class OverworksController < ApplicationController
 
   # GET /overworks/new
   def new
-    #@overwork = Overwork.new
-    @overwork = current_user.overworks.new
+    @overwork = Overwork.where(user_id: current_user.id, work_date: Date.today).first
+    if @overwork.nil? then
+      @overwork = current_user.overworks.new
+      @overwork.work_start_time = Time.new(0)+18*3600
+      @overwork.work_finish_time = Time.new(0)+18*3600
+    end
   end
 
   # GET /overworks/1/edit
@@ -29,10 +33,10 @@ class OverworksController < ApplicationController
   def create
     #@overwork = Overwork.new(overwork_params)
     @overwork = current_user.overworks.new(overwork_params)
-
+    @overwork.work_hours = (@overwork.work_finish_time - @overwork.work_start_time)/3600
     respond_to do |format|
       if @overwork.save
-        format.html { redirect_to @overwork, notice: 'Overwork was successfully created.' }
+        format.html { redirect_to overworks_path, notice: 'Overwork was successfully created.' }
         format.json { render action: 'show', status: :created, location: @overwork }
       else
         format.html { render action: 'new' }
@@ -45,8 +49,10 @@ class OverworksController < ApplicationController
   # PATCH/PUT /overworks/1.json
   def update
     respond_to do |format|
-      if @overwork.update(overwork_params)
-        format.html { redirect_to @overwork, notice: 'Overwork was successfully updated.' }
+      @overwork.assign_attributes(overwork_params)
+      @overwork.work_hours = (@overwork.work_finish_time - @overwork.work_start_time)/3600
+      if @overwork.save
+        format.html { redirect_to overworks_path, notice: 'Overwork was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +75,7 @@ class OverworksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_overwork
       @overwork = Overwork.find(params[:id])
+      @overwork = nil if @overwork.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

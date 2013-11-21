@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
+<%= button_to 'Destroy', @overwork, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Show', @overwork %> |
 <%= link_to 'Back', overworks_path %>

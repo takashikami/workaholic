@@ -1,32 +1,36 @@
 <h1>Listing overworks</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>User</th>
       <th>Date</th>
       <th>Subject</th>
       <th>Start</th>
       <th>Finish</th>
+      <th>Hours</th>
       <th>Comment</th>
+<!--
       <th></th>
       <th></th>
       <th></th>
+-->
     </tr>
   </thead>
 
   <tbody>
     <% @overworks.each do |overwork| %>
       <tr>
-        <td><%= overwork.user_id %></td>
-        <td><%= overwork.work_date %></td>
+        <td><%= link_to overwork.work_date.strftime('%Y/%m/%d（%a）'), edit_overwork_path(overwork) %></td>
         <td><%= overwork.subject %></td>
-        <td><%= overwork.work_start_time %></td>
-        <td><%= overwork.work_finish_time %></td>
+        <td><%= overwork.work_start_time.strftime('%H:%M') %></td>
+        <td><%= overwork.work_finish_time.strftime('%H:%M') %></td>
+        <td><%= sprintf( '%.2f', overwork.work_hours) %></td>
         <td><%= overwork.comment %></td>
+<!--
         <td><%= link_to 'Show', overwork %></td>
         <td><%= link_to 'Edit', edit_overwork_path(overwork) %></td>
         <td><%= link_to 'Destroy', overwork, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+-->
       </tr>
     <% end %>
   </tbody>

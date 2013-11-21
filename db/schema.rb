@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20131120085954) do
     t.string   "subject",          default: "",                    null: false
     t.time     "work_start_time",  default: '2000-01-01 00:00:00', null: false
     t.time     "work_finish_time", default: '2000-01-01 00:00:00', null: false
+    t.float    "work_hours",       default: 0.0,                   null: false
     t.string   "comment",          default: "",                    null: false
     t.integer  "status",           default: 0,                     null: false
     t.datetime "created_at"

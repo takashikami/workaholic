@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :work_date %><br>
     <%= f.date_select :work_date %>
   </div>
@@ -25,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :work_start_time %><br>
-    <%= f.time_select :work_start_time %>
+    <%= f.time_select :work_start_time, minute_step: 15 %>
   </div>
   <div class="field">
     <%= f.label :work_finish_time %><br>
-    <%= f.time_select :work_finish_time %>
+    <%= f.time_select :work_finish_time, minute_step: 15 %>
   </div>
   <div class="field">
     <%= f.label :comment %><br>
