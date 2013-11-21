@@ -14,23 +14,26 @@
   </div>
 
   <ul class="nav navbar-nav">
-    <li><a href="/overworks">List</a></li>
+    <li><%= link_to 'New', new_overwork_path %></li>
+    <li><%= link_to 'List', overworks_path %></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <% if user_signed_in? %>
         <li><%= link_to current_user.email, edit_user_registration_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
     <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Login', new_user_session_path %></li>
     <% end %>
   </ul>
 </nav>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p id="notice" class="notice"><%= notice %></p>
+<p id="alert" class="alert"><%= alert %></p>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
