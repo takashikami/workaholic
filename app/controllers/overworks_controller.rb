@@ -5,8 +5,26 @@ class OverworksController < ApplicationController
   # GET /overworks
   # GET /overworks.json
   def index
-    #@overworks = Overwork.all
-    @overworks = current_user.overworks
+    shimebi = 20
+    m = Date.today
+    if m.day > shimebi
+      @me = Date.new(m.year, m.month+1, shimebi)
+    else
+      @me = Date.new(m.year, m.month, shimebi)
+    end
+    @ms = @me - 1.month + 1.day
+
+    #@overworks = current_user.overworks
+    overworks = Overwork.where(user_id: current_user.id, work_date: @ms..@me).order(:work_date)
+
+    ak = (@ms..@me).to_a
+    av = Array.new(ak.size, nil)
+    @overworks = Hash[*[ak,av].transpose.flatten]
+    logger.error @overworks
+    overworks.each do |overwork|
+      @overworks[overwork.work_date] = overwork
+    end
+
   end
 
   # GET /overworks/1
@@ -16,9 +34,12 @@ class OverworksController < ApplicationController
 
   # GET /overworks/new
   def new
-    @overwork = Overwork.where(user_id: current_user.id, work_date: Date.today).first
+    work_date = params[:work_date]
+    work_date ||= Date.today
+    @overwork = Overwork.where(user_id: current_user.id, work_date: work_date).first
     if @overwork.nil? then
       @overwork = current_user.overworks.new
+      @overwork.work_date = work_date
       @overwork.work_start_time = Time.new(0)+18*3600
       @overwork.work_finish_time = Time.new(0)+18*3600
     end

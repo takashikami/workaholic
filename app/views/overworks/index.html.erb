@@ -1,6 +1,6 @@
 <h1>Listing overworks</h1>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
   <thead>
     <tr>
       <th>Date</th>
@@ -18,21 +18,26 @@
   </thead>
 
   <tbody>
-    <% @overworks.each do |overwork| %>
-      <tr>
+  <% (@ms..@me).each do |d| %>
+      <tr <%= case d.wday; when 0; 'class=sunday' when 6; 'class=saturday'; end %>>
+        <% overwork = @overworks[d] %>
+        <% if overwork == nil then %>
+        <td><%= link_to d.strftime('%Y/%m/%d（%a）'), new_overwork_path(work_date: d) %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        <% else %>
         <td><%= link_to overwork.work_date.strftime('%Y/%m/%d（%a）'), edit_overwork_path(overwork) %></td>
         <td><%= overwork.subject %></td>
         <td><%= overwork.work_start_time.strftime('%H:%M') %></td>
         <td><%= overwork.work_finish_time.strftime('%H:%M') %></td>
         <td><%= sprintf( '%.2f', overwork.work_hours) %></td>
         <td><%= overwork.comment %></td>
-<!--
-        <td><%= link_to 'Show', overwork %></td>
-        <td><%= link_to 'Edit', edit_overwork_path(overwork) %></td>
-        <td><%= link_to 'Destroy', overwork, method: :delete, data: { confirm: 'Are you sure?' } %></td>
--->
+        <% end %>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

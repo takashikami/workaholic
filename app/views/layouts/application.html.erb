@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <a class="navbar-brand" href="/">Workaholic</a>
   </div>
@@ -29,11 +29,12 @@
 </nav>
 
 <div class="container">
+<!--
   <p id="notice" class="notice"><%= notice %></p>
   <p id="alert" class="alert"><%= alert %></p>
-
+-->
   <%= yield %>
 </div>
-
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>
