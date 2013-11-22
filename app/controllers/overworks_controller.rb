@@ -16,6 +16,7 @@ class OverworksController < ApplicationController
 
     #@overworks = current_user.overworks
     overworks = Overwork.where(user_id: current_user.id, work_date: @ms..@me).order(:work_date)
+    @total = overworks.sum :work_hours
 
     ak = (@ms..@me).to_a
     av = Array.new(ak.size, nil)
