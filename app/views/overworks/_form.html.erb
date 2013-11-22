@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :work_date %><br>
-    <%= f.date_select :work_date %>
-  </div>
+  <%= f.hidden_field :work_date, :value => @work_date %>
   <div class="field">
     <%= f.label :subject %><br>
     <%= f.text_field :subject %>

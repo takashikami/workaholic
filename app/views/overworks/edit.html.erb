@@ -1,7 +1,5 @@
-<h1>Editing overwork</h1>
+<h1><%= @overwork.work_date.strftime('%Y/%m/%d')+"（#{yo(@overwork.work_date)}）" %></h1>
 
 <%= render 'form' %>
 
-<%= button_to 'Destroy', @overwork, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Show', @overwork %> |
-<%= link_to 'Back', overworks_path %>
+<%= button_to 'Destroy', @overwork, method: :delete, data: { confirm: 'Are you sure?' } %>
