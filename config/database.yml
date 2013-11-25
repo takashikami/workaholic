@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: workaholic
+  database: workaholic_belle
   pool: 5
   username: monty
   password: python
@@ -32,7 +32,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: workaholic_production
+  database: workaholic
   pool: 5
   username: root
   password:

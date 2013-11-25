@@ -1,0 +1,6 @@
+<% fmt = "%H:%M" %>
+[時間] <%= @overwork.work_start_time.strftime(fmt) %>～<%= @overwork.work_finish_time.strftime(fmt) %>
+[業務内容] <%= @overwork.subject %>
+<%= @overwork.comment %>
+--
+<%= @overwork.user.last_name+' '+@overwork.user.first_name %>

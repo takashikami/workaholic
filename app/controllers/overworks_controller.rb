@@ -72,6 +72,7 @@ class OverworksController < ApplicationController
     respond_to do |format|
       @overwork.assign_attributes(overwork_update_params)
       @overwork.work_hours = (@overwork.work_finish_time - @overwork.work_start_time)/3600
+      OverworkMailer.create('残業申請（結果） '+@overwork.work_date.strftime('%Y/%m/%d'), @overwork).deliver
       if @overwork.save
         format.html { redirect_to overworks_path, notice: 'Overwork was successfully updated.' }
         format.json { head :no_content }
