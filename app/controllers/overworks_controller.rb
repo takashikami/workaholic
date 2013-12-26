@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OverworksController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_overwork, only: [:show, :edit, :update, :destroy]
@@ -7,11 +8,8 @@ class OverworksController < ApplicationController
   def index
     shimebi = 20
     @work_date = Date.today
-    if @work_date.day > shimebi
-      @me = Date.new(@work_date.year, @work_date.month+1, shimebi)
-    else
-      @me = Date.new(@work_date.year, @work_date.month, shimebi)
-    end
+    @me = Date.new(@work_date.year, @work_date.month, shimebi)
+    @me += 1.month if @work_date.day > shimebi
     @ms = @me - 1.month + 1.day
 
     #@overworks = current_user.overworks
@@ -21,7 +19,7 @@ class OverworksController < ApplicationController
     ak = (@ms..@me).to_a
     av = Array.new(ak.size, nil)
     @overworks = Hash[*[ak,av].transpose.flatten]
-    logger.error @overworks
+    #logger.error @overworks
     overworks.each do |overwork|
       @overworks[overwork.work_date] = overwork
     end
@@ -42,7 +40,7 @@ class OverworksController < ApplicationController
     @overwork = current_user.overworks.new
     @overwork.work_date = @work_date
     @overwork.work_start_time = Time.new(0)+18*3600
-    @overwork.work_finish_time = Time.new(0)+18*3600
+    @overwork.work_finish_time = Time.new(0)+Time.now.hour*3600
   end
 
   # GET /overworks/1/edit
