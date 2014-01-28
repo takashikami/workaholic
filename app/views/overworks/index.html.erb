@@ -1,5 +1,6 @@
 
-<h1><%= @me.strftime('%Y/%m')%></h1> <h1 class="text-right text-margintop-50"><%= sprintf('TOTAL:%.2f', @total) %></h1>
+<h1><%= @me.strftime('%Y/%m')%></h1>
+<h1 class="text-right text-margintop-50"><%= sprintf('TOTAL:%.2f', @total) %></h1>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
@@ -24,12 +25,12 @@
             <td></td>
             <td></td>
         <% else %>
-        <td><%= link_to overwork.work_date.strftime('%Y/%m/%d')+"（#{yo d}）", edit_overwork_path(overwork) %></td>
-        <td><%= overwork.subject %></td>
-        <td><%= overwork.work_start_time.strftime('%H:%M') %></td>
-        <td><%= overwork.work_finish_time.strftime('%H:%M') %></td>
-        <td><%= sprintf( '%.2f', overwork.work_hours) %></td>
-        <td><%= overwork.comment %></td>
+            <td><%= link_to overwork.work_date.strftime('%Y/%m/%d')+"（#{yo d}）", edit_overwork_path(overwork) %></td>
+            <td><%= overwork.subject %></td>
+            <td><%= overwork.work_start_time.strftime('%H:%M') %></td>
+            <td><%= overwork.work_finish_time.strftime('%H:%M') %></td>
+            <td><%= sprintf( '%.2f', overwork.work_hours) %></td>
+            <td><%= overwork.comment %></td>
         <% end %>
       </tr>
     <% end %>
