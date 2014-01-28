@@ -7,9 +7,13 @@ class OverworksController < ApplicationController
   # GET /overworks.json
   def index
     shimebi = 20
-    @work_date = Date.today
-    @me = Date.new(@work_date.year, @work_date.month, shimebi)
-    @me += 1.month if @work_date.day > shimebi
+    today = Date.today
+    if params[:me]
+      @me = Date.new(*(params[:me]+shimebi.to_s).unpack('a4a2a2').map(&:to_i))
+    else
+      @me = Date.new(today.year, today.month, shimebi)
+      @me += 1.month if today.day > shimebi
+    end
     @ms = @me - 1.month + 1.day
 
     #@overworks = current_user.overworks
