@@ -1,0 +1,11 @@
+# -*- mode:ruby -*-
+app_root = ENV['PWD']
+
+worker_processes 2
+working_directory app_root
+
+listen 4568
+
+pid app_root+"/tmp/pids/unicorn.pid"
+stderr_path app_root+"/log/unicorn_err.log"
+stdout_path app_root+"/log/unicorn_out.log"
