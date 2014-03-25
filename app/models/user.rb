@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   has_many :bukas, through: :buka_links, source: :user
 
   has_many :overworks
+  has_many :offs
 end

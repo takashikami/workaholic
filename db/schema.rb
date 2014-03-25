@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125035300) do
+ActiveRecord::Schema.define(version: 20140324071445) do
 
   create_table "bosses", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(version: 20131125035300) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "offs", force: true do |t|
+    t.integer  "user_id",                        null: false
+    t.date     "off_date",                       null: false
+    t.string   "subject",          default: "",  null: false
+    t.float    "off_days",         default: 1.0, null: false
+    t.integer  "off_type",         default: 0,   null: false
+    t.integer  "off_half_type"
+    t.time     "off_quarter_time"
+    t.integer  "fy",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "offs", ["fy"], name: "index_offs_on_fy", using: :btree
+  add_index "offs", ["off_type"], name: "index_offs_on_off_type", using: :btree
+  add_index "offs", ["user_id"], name: "index_offs_on_user_id", using: :btree
 
   create_table "overworks", force: true do |t|
     t.integer  "user_id",          default: 0,                     null: false

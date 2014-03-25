@@ -1,0 +1,40 @@
+<%= form_for(@off) do |f| %>
+  <% if @off.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@off.errors.count, "error") %> prohibited this off from being saved:</h2>
+
+      <ul>
+      <% @off.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :off_date %><br>
+    <%= f.text_field :off_date, {'data-provide'=>'datepicker', 'data-date-format'=>'yyyy-mm-dd', 'data-language'=>'ja' } %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :off_type %><br>
+    <%= f.radio_button :off_type, 0 %>休暇
+    <%= f.radio_button :off_type, 1 %>半休
+    <%= f.radio_button :off_type, 2 %>２時間休
+  </div>
+  <div class="field">
+    <%= f.label :off_half_type %><br>
+    <%= f.radio_button :off_half_type, 1 %>午前
+    <%= f.radio_button :off_half_type, 2 %>午後
+  </div>
+  <div class="field">
+    <%= f.label :off_quarter_time %><br>
+    <%= f.time_select :off_quarter_time, include_blank:true, start_hour:9, end_hour:16, minute_step:15 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

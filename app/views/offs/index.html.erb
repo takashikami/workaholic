@@ -1,0 +1,67 @@
+<h1>
+  <%= link_to '<', offs_path(fy:@fy-1) %>
+  <%= @fy %>
+  <%= link_to '>', offs_path(fy:@fy+1)%>
+</h1>
+<h1 class="text-right text-margintop-50"><%= sprintf('TOTAL:%.2f', @offs.sum(:off_days)) %></h1>
+
+<h2>休暇：<%= "%.2f"%@offs0.sum(:off_days) %></h2>
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <th>Off date</th>
+    <th>Subject</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @offs0.each do |off| %>
+      <tr>
+        <td><%= link_to off.off_date.to_s+"（#{yo off.off_date}）", edit_off_path(off) %></td>
+        <td><%= off.subject %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>半休：<%= "%.2f"%@offs1.sum(:off_days) %></h2>
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <th>Off date</th>
+    <th>Subject</th>
+    <th>Off half type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @offs1.each do |off| %>
+      <tr>
+        <td><%= link_to off.off_date.to_s+"（#{yo off.off_date}）", edit_off_path(off) %></td>
+        <td><%= off.subject %></td>
+        <td><%= off.off_half_type == 1 ? '午前' : '午後' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>２時間休：<%= "%.2f"%@offs2.sum(:off_days) %></h2>
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <th>Off date</th>
+    <th>Subject</th>
+    <th>Off quarter time</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @offs2.each do |off| %>
+      <tr>
+        <td><%= link_to off.off_date.to_s+"（#{yo off.off_date}）", edit_off_path(off) %></td>
+        <td><%= off.subject %></td>
+        <td><%= off.off_quarter_time.strftime('%H:%M') if off.off_quarter_time %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

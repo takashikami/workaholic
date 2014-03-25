@@ -1,11 +1,12 @@
 
 <h1>
   <% chevron='glyphicon glyphicon-chevron-' %>
-  <%= link_to '<', overworks_path(me:@me.next_month.strftime('%Y%m'))%>
+  <%= link_to '<', overworks_path(me:@me.last_month.strftime('%Y%m'))%>
   <%= @me.strftime('%Y/%m')%>
-  <%= link_to '>', overworks_path(me:@me.last_month.strftime('%Y%m'))%>
+  <%= link_to '>', overworks_path(me:@me.next_month.strftime('%Y%m'))%>
 </h1>
 <h1 class="text-right text-margintop-50"><%= sprintf('TOTAL:%.2f', @total) %></h1>
+
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
@@ -41,6 +42,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-

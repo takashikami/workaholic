@@ -1,4 +1,6 @@
 Workaholic::Application.routes.draw do
+  resources :offs
+
   resources :overworks
 
   devise_for :users

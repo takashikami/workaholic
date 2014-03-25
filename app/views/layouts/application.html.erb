@@ -19,8 +19,10 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li><%= link_to 'New', new_overwork_path %></li>
-      <li><%= link_to 'List', overworks_path %></li>
+      <li><%= link_to '残業申請', new_overwork_path %></li>
+      <li><%= link_to '残業一覧', overworks_path %></li>
+      <li><%= link_to '休暇申請', new_off_path %></li>
+      <li><%= link_to '休暇一覧', offs_path %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>

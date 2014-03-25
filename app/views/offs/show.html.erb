@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @off.user_id %>
+</p>
+
+<p>
+  <strong>Off date:</strong>
+  <%= @off.off_date %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @off.subject %>
+</p>
+
+<p>
+  <strong>Off days:</strong>
+  <%= @off.off_days %>
+</p>
+
+<p>
+  <strong>Off type:</strong>
+  <%= @off.off_type %>
+</p>
+
+<p>
+  <strong>Off half type:</strong>
+  <%= @off.off_half_type %>
+</p>
+
+<p>
+  <strong>Off quarter time:</strong>
+  <%= @off.off_quarter_time %>
+</p>
+
+<%= link_to 'Edit', edit_off_path(@off) %> |
+<%= link_to 'Back', offs_path %>
