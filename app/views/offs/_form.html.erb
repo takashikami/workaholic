@@ -13,8 +13,18 @@
 
   <div class="field">
     <%= f.label :off_date %><br>
-    <%= f.text_field :off_date %>
+    <%= f.text_field :off_date, {'data-behaviour'=>'datepicker'} %>
   </div>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('[data-behaviour~=datepicker]').datepicker({
+              language: "ja",
+              todayBtn: true,
+              autoclose: true,
+              todayHighlight: true
+          });
+      })
+  </script>
   <div class="field">
     <%= f.label :subject %><br>
     <%= f.text_field :subject %>

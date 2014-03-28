@@ -33,9 +33,7 @@ class OffsController < ApplicationController
   # POST /offs.json
   def create
     @off = current_user.offs.new(off_params)
-    @off.off_days = 1.0 / (2**@off.off_type)
-    @off.off_quarter_time = nil unless @off.off_type == 2
-    @off.fy = to_fy(@off.off_date)
+    calc_off
 
     respond_to do |format|
       if @off.save
@@ -51,8 +49,11 @@ class OffsController < ApplicationController
   # PATCH/PUT /offs/1
   # PATCH/PUT /offs/1.json
   def update
+    @off.assign_attributes(off_params)
+    calc_off
+
     respond_to do |format|
-      if @off.update(off_params)
+      if @off.save
         format.html { redirect_to offs_url, notice: 'Off was successfully updated.' }
         format.json { head :no_content }
       else
@@ -76,6 +77,7 @@ class OffsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_off
       @off = Off.find(params[:id])
+      @off = nil if @off.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -88,4 +90,11 @@ class OffsController < ApplicationController
     date.year - (date.month < 4 ? 1 : 0)
   end
 
+  def calc_off
+    @off.off_days = 1.0 / (2**@off.off_type)
+    @off.off_half_type = nil unless @off_type == 1
+    @off.off_quarter_time = nil unless @off.off_type == 2
+    @off.fy = to_fy(@off.off_date)
+    @off
+  end
 end
