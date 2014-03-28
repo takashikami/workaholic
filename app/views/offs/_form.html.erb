@@ -13,27 +13,33 @@
 
   <div class="field">
     <%= f.label :off_date %><br>
-    <%= f.text_field :off_date, {'data-provide'=>'datepicker', 'data-date-format'=>'yyyy-mm-dd', 'data-language'=>'ja' } %>
+    <%= f.text_field :off_date %>
   </div>
   <div class="field">
     <%= f.label :subject %><br>
     <%= f.text_field :subject %>
   </div>
-  <div class="field">
-    <%= f.label :off_type %><br>
-    <%= f.radio_button :off_type, 0 %>休暇
-    <%= f.radio_button :off_type, 1 %>半休
-    <%= f.radio_button :off_type, 2 %>２時間休
-  </div>
-  <div class="field">
-    <%= f.label :off_half_type %><br>
-    <%= f.radio_button :off_half_type, 1 %>午前
-    <%= f.radio_button :off_half_type, 2 %>午後
-  </div>
-  <div class="field">
-    <%= f.label :off_quarter_time %><br>
-    <%= f.time_select :off_quarter_time, include_blank:true, start_hour:9, end_hour:16, minute_step:15 %>
-  </div>
+  <table>
+    <tbody class="field">
+    <tr>
+      <td><%= f.radio_button :off_type, 0 %>休暇</td>
+    </tr>
+    <tr>
+      <td><%= f.radio_button :off_type, 1 %>半休</td>
+      <td class="field">
+        <%= f.radio_button :off_half_type, 1 %>午前
+        <%= f.radio_button :off_half_type, 2 %>午後
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.radio_button :off_type, 2 %>２時間休</td>
+      <td class="field">
+        <%= f.time_select :off_quarter_time, include_blank:true, start_hour:9, end_hour:16, minute_step:15 %>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
