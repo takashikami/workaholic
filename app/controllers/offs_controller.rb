@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OffsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_off, only: [:show, :edit, :update, :destroy]
@@ -92,7 +93,7 @@ class OffsController < ApplicationController
 
   def calc_off
     @off.off_days = 1.0 / (2**@off.off_type)
-    @off.off_half_type = nil unless @off_type == 1
+    @off.off_half_type = nil unless @off.off_type == 1
     @off.off_quarter_time = nil unless @off.off_type == 2
     @off.fy = to_fy(@off.off_date)
     @off
